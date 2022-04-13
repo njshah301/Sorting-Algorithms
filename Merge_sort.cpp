@@ -12,43 +12,51 @@ using namespace std;
 
 class Merge_Sort{
     public:
-void Merge(int arr[],int ls,int mid,int rs){            //This method Merge two subarrays in sorted order
-int size1,size2;                              //this size is for two subarrays
-size1=mid-ls+1;
-size2=rs-mid;
+
+   
+void Merge(int arr[],int ls,int mid,int rs){           //This method Merge two subarrays in sorted order
+int size1=mid+1-ls;
+int size2=rs-mid;
 int a[size1],b[size2];
-int i;
-for(i=0;i<size1;i++){
-    a[i]=arr[i+ls];
-}
-for(i=0;i<size2;i++){
-    b[i]=arr[i+mid+1];
+int size=rs-ls+1;
+int i=0,j=0;
+int temp=0;
+
+for(int i=0;i<size1;i++)
+{
+    a[i]=arr[i];
 }
 
-int nj,kj,fj;
-nj=0;                     //for array a[size1]
-kj=0;                    //for array b[size2]
-fj=ls;                  //for main array arr[n]
-while(nj<size1 && kj<size2){
-    if(a[nj]<b[kj]){
-        arr[fj]=a[nj];
-        nj++;
-    }
-    else{
-        arr[fj]=b[kj];
-        kj++;
-    }
-    fj++;
+for(int i=size1;i<size;i++)
+{
+    b[temp++]=arr[i];
 }
-//Now,Here if extra elements are available than this procedure include it
-while(nj<size1){
-    arr[fj]=a[nj];nj++;
-    fj++;
+i=0,j=0;
+temp=0;
+while(i<size1 && j<size2)
+{
+    if(a[i]<=b[j])
+    {
+        arr[temp++]=a[i++];
+    }
+    else
+    {
+        arr[temp++]=b[j++];
+    }
 }
-while(kj<size2){
-    arr[fj]=b[kj];
-    kj++;
-    fj++;
+if(i<size1)
+{
+    while(i<size1)
+    {
+        arr[temp++]=a[i++];
+    }
+}
+if(j<size2)
+{
+    while(j<size2)
+    {
+        arr[temp++]=b[j++];
+    }
 }
 
 
